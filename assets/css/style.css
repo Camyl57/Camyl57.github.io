@@ -21,21 +21,21 @@
   color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --bg: #0b1433;
-  --bg-2: #101c45;
-  --card: #14214f;
-  --line: #28397a;
-  --text: #eef2ff;
-  --muted: #a6b4e0;
-  --accent: #8fa9ff;
-  --accent-2: #6b8cff;
-  --dolphin: #8a96b3;
-  --grid: rgba(143,169,255,.09);
-  --on-accent: #0b1433;
-  --band-bg: #8fa9ff;
-  --band-ink: #0b1433;
+  --bg: #0d0e11;
+  --bg-2: #14161b;
+  --card: #16181d;
+  --line: #2a2e38;
+  --text: #f2f3f5;
+  --muted: #9aa0ad;
+  --accent: #8da8ff;
+  --accent-2: #6f8ff5;
+  --dolphin: #8a96a3;
+  --grid: rgba(255,255,255,.04);
+  --on-accent: #0d0e11;
+  --band-bg: #8da8ff;
+  --band-ink: #0d0e11;
   --shadow: none;
-  --nav-bg: rgba(11,20,51,.9);
+  --nav-bg: rgba(13,14,17,.9);
   color-scheme: dark;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
