@@ -252,3 +252,8 @@ section.alt .item.edu::before { background: var(--bg-2); }
   .curtain { display: none; }
 }
 @media (hover: none), (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* Thème sombre : terminal noir comme à l'origine */
+:root[data-theme="dark"] .term { --text: #f2f3f5; --muted: #9aa0ad; --line: #2a2e38; --accent: #8da8ff;
+  border-color: #2a2e38; background: #14161b; box-shadow: 0 30px 60px -28px rgba(0,0,0,.7); }
+:root[data-theme="dark"] .curtain { color: var(--on-accent); }
