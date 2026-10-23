@@ -11,10 +11,12 @@
 <meta property="og:description" content="Projets, parcours et contact. Recherche un stage à partir de septembre 2027.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/animations.css">
 <script src="assets/js/main.js" defer></script>
 </head>
 <body id="top">
 <a class="skip" href="#contenu">Aller au contenu</a>
+<div class="progress" aria-hidden="true"></div>
 
 <header class="site-nav">
   <div class="wrap">
@@ -35,15 +37,38 @@
 
 <main id="contenu">
 <div class="hero">
-  <div class="wrap">
-    <h1>Camyl <em>Khebache</em></h1>
-    <p class="lead">Étudiant ingénieur en réseaux et télécommunications à l'UTT. Je construis des outils concrets : déploiement, automatisation et applications web.</p>
-    <p class="status">&gt; Recherche un stage à partir de septembre 2027</p>
-    <div class="actions">
-      <a class="btn primary" href="#projets">Voir mes projets</a>
-      <a class="btn" href="#contact">Me contacter</a>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="kicker">Portfolio · 2026</p>
+      <h1>Camyl <em>Khebache</em></h1>
+      <p class="lead">Étudiant ingénieur en réseaux et télécommunications à l'UTT. Je construis des outils concrets : déploiement, automatisation et applications web.</p>
+      <p class="status"><span class="dot" aria-hidden="true"></span>Recherche un stage à partir de septembre 2027</p>
+      <div class="actions">
+        <a class="btn primary" href="#projets">Voir mes projets</a>
+        <a class="btn" href="#contact">Me contacter</a>
+      </div>
+    </div>
+    <div class="term" aria-hidden="true">
+      <div class="term-bar"><i></i><i></i><i></i><span>camyl@utt: ~</span></div>
+      <pre class="term-body"><span class="l" style="--i:0"><b>$</b> whoami</span>
+<span class="l" style="--i:1">camyl.khebache</span>
+<span class="l" style="--i:2"><b>$</b> cat profil.txt</span>
+<span class="l" style="--i:3"><u>école</u>   UTT · cycle ingénieur R&amp;T</span>
+<span class="l" style="--i:4"><u>base</u>    Farébersviller (57)</span>
+<span class="l" style="--i:5"><u>focus</u>   réseaux · cloud · automatisation</span>
+<span class="l" style="--i:6"><u>stage</u>   septembre 2027</span>
+<span class="l" style="--i:7"><b>$</b> <span class="cursor"></span></span></pre>
     </div>
   </div>
+</div>
+
+<div class="wrap">
+  <ul class="stats" aria-label="En chiffres">
+    <li><strong>2</strong><span>projets détaillés</span></li>
+    <li><strong>2</strong><span>stages réalisés</span></li>
+    <li><strong>6</strong><span>langues</span></li>
+    <li><strong>09/2027</strong><span>début de stage visé</span></li>
+  </ul>
 </div>
 
 <section id="apropos" aria-labelledby="t-apropos">
@@ -64,6 +89,11 @@
             <dt>Base</dt><dd>Farébersviller (Moselle), France</dd>
             <dt>Statut</dt><dd>Étudiant en formation initiale</dd>
           </dl>
+        </div>
+        <div class="focus">
+          <div><h3>Réseaux</h3><p>Comprendre comment les machines et les services communiquent, de la connectivité aux protocoles.</p></div>
+          <div><h3>Cloud</h3><p>Conteneurs, registres d'images et déploiements reproductibles : mes premiers pas avec Docker et GitLab.</p></div>
+          <div><h3>Automatisation</h3><p>Scripts et outils pour supprimer les tâches répétitives et fiabiliser les mises en place.</p></div>
         </div>
       </div>
     </div>
@@ -172,12 +202,12 @@
     <div class="eyebrow">§ 05 <span>Langues</span></div>
     <h2 id="t-langues">Langues <em>parlées.</em></h2>
     <ul class="langs">
-      <li><strong>Français</strong><small>langue maternelle</small></li>
-      <li><strong>Anglais</strong><small>C1</small></li>
-      <li><strong>Arabe</strong><small>B2</small></li>
-      <li><strong>Espagnol</strong><small>B1</small></li>
-      <li><strong>Allemand</strong><small>A2</small></li>
-      <li><strong>Luxembourgeois</strong><small>A1</small></li>
+      <li><strong>Français</strong><small>langue maternelle</small><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
+      <li><strong>Anglais</strong><small>C1</small><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li>
+      <li><strong>Arabe</strong><small>B2</small><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li>
+      <li><strong>Espagnol</strong><small>B1</small><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li>
+      <li><strong>Allemand</strong><small>A2</small><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span></li>
+      <li><strong>Luxembourgeois</strong><small>A1</small><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span></li>
     </ul>
   </div>
 </section>
