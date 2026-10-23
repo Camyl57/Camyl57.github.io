@@ -118,7 +118,7 @@
   var animated = els.concat(titles);
   function onEnter(el) {
     el.classList.add('in');
-    if (el.classList.contains('eyebrow')) { var s = el.querySelector('span'); if (s) scramble(s); }
+    if (el.classList.contains('eyebrow')) { el.classList.add('drawn'); var s = el.querySelector('span'); if (s) scramble(s); }
     $$('[data-count]', el).forEach(countUp);
     if (el.hasAttribute('data-reveal')) {
       // une fois l'apparition terminée, on rend la main aux effets de survol
@@ -126,7 +126,7 @@
     }
   }
   if (reduce || !('IntersectionObserver' in window)) {
-    animated.forEach(function (el) { el.classList.add('in'); });
+    animated.forEach(function (el) { el.classList.add('in'); if (el.classList.contains('eyebrow')) el.classList.add('drawn'); });
   } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -244,11 +244,49 @@
   // ---------- Titre principal : animation dès le chargement ----------
   $$('.hero h1, .page-head h1').forEach(function (h) { requestAnimationFrame(function () { h.classList.add('in'); }); });
 
+  // ---------- Curseur personnalisé (souris uniquement) ----------
+  if (!reduce && fine) {
+    var dot = document.createElement('div'), ring = document.createElement('div');
+    dot.className = 'cursor-dot'; ring.className = 'cursor-ring';
+    dot.setAttribute('aria-hidden', 'true'); ring.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(ring); document.body.appendChild(dot);
+    var cx = 0, cy = 0, rx = 0, ry = 0, moving = false;
+    window.addEventListener('pointermove', function (e) {
+      cx = e.clientX; cy = e.clientY;
+      dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
+      if (!moving) { rx = cx; ry = cy; moving = true; root.classList.add('cursor-on'); requestAnimationFrame(follow); }
+    });
+    document.addEventListener('pointerleave', function () { root.classList.remove('cursor-on'); });
+    document.addEventListener('pointerenter', function () { root.classList.add('cursor-on'); });
+    function follow() {
+      rx += (cx - rx) * 0.18; ry += (cy - ry) * 0.18;
+      ring.style.transform = 'translate(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px)';
+      requestAnimationFrame(follow);
+    }
+    document.addEventListener('pointerover', function (e) {
+      ring.classList.toggle('big', !!e.target.closest('a, button, .project, .skill-group'));
+    });
+  }
+
+  // ---------- Rideau d'entrée (une fois par session, page d'accueil) ----------
+  if (!reduce && document.querySelector('.hero')) {
+    var seen = false;
+    try { seen = sessionStorage.getItem('intro') === '1'; sessionStorage.setItem('intro', '1'); } catch (e) {}
+    if (!seen) {
+      var cur = document.createElement('div');
+      cur.className = 'curtain'; cur.setAttribute('aria-hidden', 'true');
+      cur.innerHTML = '<span>Camyl Khebache</span>';
+      document.body.appendChild(cur);
+      setTimeout(function () { cur.remove(); }, 2300);
+    }
+  }
+
   // ---------- Défilement : progression, section active, frise, parallaxe ----------
   var bar = document.querySelector('.progress');
   var links = $$('.menu a[href^="#"]');
   var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
   var tl = document.querySelector('.timeline');
+  var bigs = $$('.bigtext');
   var ticking = false;
   function update() {
     ticking = false;
@@ -264,6 +302,12 @@
       tl.style.setProperty('--tl', Math.max(0, Math.min(1, p)).toFixed(3));
     }
     if (!reduce && y0 < 1200) root.style.setProperty('--sy', y0);
+    if (!reduce) bigs.forEach(function (b) {
+      var r = b.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      var k = (r.top + r.height / 2) / window.innerHeight;
+      b.querySelector('p').style.setProperty('--bx', (-(1 - k) * 0.5 * b.querySelector('p').scrollWidth * 0.35).toFixed(0) + 'px');
+    });
   }
   window.addEventListener('scroll', function () {
     if (!ticking) { ticking = true; requestAnimationFrame(update); }
